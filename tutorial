@@ -1,0 +1,40 @@
+1. deploy solidity-chain to Polygon mumbai testnet
+-> record video
+
+2. Set up relayer
+-> update config.json, import private key, then start relayer
+
+3. transfer ERC20 token
+-> register resource ID on both chains (for substrate, register using PolkadotJS Centrifuge, see steps below)
+   call scripts mint, balance, approve, deposit to execute transferring transaction
+
+
+
+*****Register Resources Substrate*****
+Steps to register resources:
+
+Select the Sudo tab in the PolkadotJS Portal
+Call chainBridge.setResource, passing both the Id and Method listed below for each of the transfer types you wish to use
+Fungible (Native asset):
+
+Id: 0x000000000000000000000000000000c76ebe4a02bbc34786d860b355f5a5ce00
+
+Method: 0x4578616d706c652e7472616e73666572 (utf-8 encoding of "Example.transfer")
+
+NonFungible(ERC721):
+
+Id: 0x000000000000000000000000000000e389d61c11e5fe32ec1735b3cd38c69501
+
+Method: 0x4578616d706c652e6d696e745f657263373231 (utf-8 encoding of "Example.mint_erc721")
+
+Generic (Hash Transfer):
+
+Id: 0x000000000000000000000000000000f44be64d2de895454c3467021928e55e01
+
+Method: 0x4578616d706c652e72656d61726b (utf-8 encoding of "Example.remark")
+
+Whitelist Chains¶
+Steps to whitelist chains:
+
+Select the Sudo tab in the PolkadotJS Portal
+Call chainBridge.whitelistChain, specifying 0 for the Ethereum chain ID
